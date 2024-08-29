@@ -11,10 +11,9 @@ mã_list = xls.sheet_names[1:]
 filtered_list = [item for item in mã_list if 'TIN' not in item and 'EVF' not in item]
 
 # Danh sách các chỉ tiêu
-options = ["VPB", "VIB", "VCB","VBB","VAB","TPB","TCB","STB","SBB","SHB","SGB","PGB","OCB","NVB","MSB","MBB","LPB","HDB"
-           ,"KLB","EIB","CTG","BID","BVB","ACB","BAB","ABB","NAB"]
 # Tạo giao diện người dùng trong Streamlit
-selected_mã = st.multiselect('Chọn mã:', filtered_list, default=options)
+selected_mã = st.multiselect('Chọn mã:', filtered_list, default=["VPB", "VIB", "VCB","VBB","VAB","TPB","TCB","STB","SBB","SHB","SGB","PGB","OCB","NVB","MSB","MBB","LPB","HDB"
+           ,"KLB","EIB","CTG","BID","BVB","ACB","BAB","ABB","NAB"])
 if filtered_list in selected_mã:
     selected_mã = mã_list  # Nếu "Chọn tất cả" được chọn, chọn hết các mã
 
