@@ -9,6 +9,7 @@ xls = pd.ExcelFile(file_path)
 # Lấy danh sách các mã
 mã_list = xls.sheet_names[1:] 
 filtered_list = [item for item in mã_list if 'TIN' not in item and 'EVF' not in item]
+st.write(filtered_list)
 
 # Danh sách các chỉ tiêu
 # Tạo giao diện người dùng trong Streamlit
