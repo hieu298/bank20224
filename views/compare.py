@@ -13,7 +13,7 @@ st.write(filtered_list)
 
 # Danh sách các chỉ tiêu
 # Tạo giao diện người dùng trong Streamlit
-selected_mã = st.multiselect('Chọn mã:', filtered_list, default=["VPB","CTG","VPB", "VIB", "VCB","VBB","VAB","TPB","TCB","STB","SBB","SHB","SGB","PGB","OCB","NVB","MSB","MBB","LPB","HDB","KLB","EIB","CTG","BID","BVB","ACB","BAB","ABB","NAB"])
+selected_mã = st.multiselect('Chọn mã:', filtered_list, default=["VPB","CTG","VPB"])
 if filtered_list in selected_mã:
     selected_mã = mã_list  # Nếu "Chọn tất cả" được chọn, chọn hết các mã
 
