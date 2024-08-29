@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 # Đọc file Excel và lấy tên các sheet
-file_path = "asset/Bankdata.xlsxx"
+file_path ='asset/Bankdata.xlsx'
 xls = pd.ExcelFile(file_path)
 
 
