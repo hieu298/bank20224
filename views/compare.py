@@ -12,8 +12,7 @@ filtered_list = [item for item in mã_list if 'TIN' not in item and 'EVF' not in
 
 # Danh sách các chỉ tiêu
 # Tạo giao diện người dùng trong Streamlit
-selected_mã = st.multiselect('Chọn mã:', filtered_list, default=["VPB", "VIB", "VCB","VBB","VAB","TPB","TCB","STB","SBB","SHB","SGB","PGB","OCB","NVB","MSB","MBB","LPB","HDB"
-           ,"KLB","EIB","CTG","BID","BVB","ACB","BAB","ABB","NAB"])
+selected_mã = st.multiselect('Chọn mã:', filtered_list, default=["VPB"])
 if filtered_list in selected_mã:
     selected_mã = mã_list  # Nếu "Chọn tất cả" được chọn, chọn hết các mã
 
