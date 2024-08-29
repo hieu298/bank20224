@@ -1,7 +1,6 @@
 import streamlit as st
 st.set_page_config(
     page_title="Your Page Title",
-    page_icon="asset/LOGO.png",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -41,7 +40,6 @@ pg = st.navigation(
 
 
 # --- SHARED ON ALL PAGES ---
-st.logo("asset/LOGO.png")
 st.sidebar.markdown("Tham gia với chúng tôi tại ✉️ .[TienDalio](https://www.youtube.com/@tiendalio7734)")
 
 # --- RUN NAVIGATION ---
