@@ -99,7 +99,7 @@ else:
 
 
 ##########################################################################################################
-file_path = r"C:\Users\Lenovo\Downloads\RATIO\MergedWorkbook.xlsx"
+file_path = 'asset/MergedWorkbook.xlsx'
 excel_data = pd.ExcelFile(file_path)
 
 # Lấy tên của các sheet trong file Excel (các mã chứng khoán)
