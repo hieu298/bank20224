@@ -96,3 +96,74 @@ if columnspick:
     st.write(fig)
 else:
     st.write("Hãy chọn ít nhất một Quý để hiển thị dữ liệu.")
+
+
+##########################################################################################################
+file_path = r"C:\Users\Lenovo\Downloads\RATIO\MergedWorkbook.xlsx"
+excel_data = pd.ExcelFile(file_path)
+
+# Lấy tên của các sheet trong file Excel (các mã chứng khoán)
+sheet_names = excel_data.sheet_names
+selected_sheet = st.selectbox('Chọn mã chứng khoán:', sheet_names)
+# Tạo một selectbox trong Streamlit để chọn mã chứng khoán
+df = pd.read_excel(file_path,sheet_name=selected_sheet )
+
+# Lấy dữ liệu từ dòng thứ 8 trở đi
+df.columns=df.iloc[6]
+df = df.iloc[7:].reset_index(drop=True)
+
+item1 = df.iloc[0:,0].to_list()
+pick1 = st.selectbox('Chọn chỉ tiêu:',item1)
+
+
+
+chỉ_tiêu_data1 = {}
+
+for mã in pick2:
+    df1= pd.read_excel(file_path,sheet_name=mã )
+    df1.columns=df1.iloc[6]
+    df1 = df1.iloc[7:].reset_index(drop=True)
+
+    
+    chỉ_tiêu_index1 = df[df.iloc[:, 0].str.strip() == pick1].index
+    if len(chỉ_tiêu_index1) > 0:
+        chỉ_tiêu_values1 = df1.iloc[chỉ_tiêu_index1[0], 1:].dropna().values
+        chỉ_tiêu_data1[mã] = chỉ_tiêu_values1
+
+index_length1 = len(list(chỉ_tiêu_data1.values())[0])
+# Chuyển dữ liệu thành DataFrame để tiện so sánh
+chỉ_tiêu_df1 = pd.DataFrame(chỉ_tiêu_data1, index=df1.columns[1:index_length+1])
+chỉ_tiêu_df1 = chỉ_tiêu_df1.transpose()
+
+st.write(chỉ_tiêu_df1)
+
+columnspick1 = st.multiselect('Chọn Quý:', chỉ_tiêu_df1.columns, default=chỉ_tiêu_df1.columns[-1])
+
+if columnspick1:
+    pickdf1 = chỉ_tiêu_df1[columnspick1]
+    pickdf1 = pickdf1.sort_values(by=columnspick1[0])
+    st.write(pickdf1)
+
+    fig1 = go.Figure()
+
+    # Lặp qua từng cột trong pickdf và thêm vào biểu đồ
+    for col in pickdf1.columns:
+        fig1.add_trace(go.Bar(
+            x=pickdf1.index,
+            y=pickdf1[col],
+            name=col,
+            text=[f'{val:.3f}' for val in pickdf1[col]],  # Hiển thị giá trị trên cột
+            textposition='outside',
+        ))
+
+    # Cập nhật layout của biểu đồ
+    fig1.update_layout(
+        title=f'So sánh các giá trị của từng mã',
+        xaxis_title='Mã ',
+        yaxis_title='Giá trị',
+        height=600,
+    )
+
+    st.write(fig1)
+else:
+    st.write("Hãy chọn ít nhất một Quý để hiển thị dữ liệu.")
