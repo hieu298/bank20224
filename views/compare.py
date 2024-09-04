@@ -245,4 +245,3 @@ if a is not None and b is not None and c is not None and d is not None and e is 
     st.plotly_chart(fig)
 else:
     st.write("Không có dữ liệu để hiển thị1.")
-st.write(e)
