@@ -210,7 +210,7 @@ if a is not None and b is not None and c is not None and d is not None and e is 
     b = b['Average']
     c = c['Average']
     d = d['Average']
-    e = d['Average']
+    e = e['Average']
 
 
     # Gộp các DataFrame lại
