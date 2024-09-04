@@ -205,45 +205,4 @@ c = taodf(NHcanhan, file_path, pick1)
 d = taodf(NHnho, file_path, pick1)
 e = taodf(toannganh, file_path, pick1)
 
-# Chỉ lấy cột 'Average'
-if a is not None and b is not None and c is not None and d is not None and e is not None:
-    a = a['Average']
-    b = b['Average']
-    c = c['Average']
-    d = d['Average']
-    e = e['Average']
-
-    # Gộp các DataFrame lại
-    merged_df = pd.concat([a, b, c, d, e], axis=1)
-
-    # Đặt tên cho các cột trong DataFrame hợp nhất
-    merged_df.columns = ['Big4', 'NH Doanh Nghiệp', 'NH Cá Nhân', 'NH Nhỏ', 'Toàn Ngành']
-
-    # Hiển thị DataFrame hợp nhất
-    st.write(merged_df)
-
-    # Vẽ biểu đồ
-    traces = []
-    for column in merged_df.columns:
-        trace = go.Scatter(
-            x=merged_df.index,  # Trục x là index của DataFrame (thường là các chỉ số hoặc thời gian)
-            y=merged_df[column],  # Trục y là giá trị của cột tương ứng
-            mode='lines',  # Chế độ vẽ đường
-            name=column  # Tên của đường, là tên cột
-        )
-        traces.append(trace)
-
-    # Tạo layout cho biểu đồ
-    layout = go.Layout(
-        title='Biểu đồ {} của Các Nhóm Ngân Hàng'.format(pick1),
-        xaxis=dict(title='Thời gian'),
-        yaxis=dict(title='Giá trị'),
-    )
-
-    # Tạo figure với các trace
-    fig = go.Figure(data=traces, layout=layout)
-
-    # Hiển thị biểu đồ trong Streamlit
-    st.plotly_chart(fig)
-else:
-    st.write("Không có dữ liệu để hiển thị.")
+# Chỉ lấy cột 'Average
