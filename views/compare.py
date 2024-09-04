@@ -215,7 +215,7 @@ if a is not None and b is not None and c is not None and d is not None:
     merged_df = pd.concat([a, b, c, d], axis=1)
 
     # Đặt tên cho các cột trong DataFrame hợp nhất
-    merged_df.columns = ['Big4', 'NH Doanh Nghiệp', 'NH Cá Nhân', 'NH Nhỏ', 'Toàn Ngành']
+    merged_df.columns = ['Big4', 'NH Doanh Nghiệp', 'NH Cá Nhân', 'NH Nhỏ']
 
     # Hiển thị DataFrame hợp nhất
     st.write(merged_df)
