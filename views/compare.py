@@ -198,11 +198,16 @@ def taodf(pick2, file_path, pick1):
     else:
         return None
 
-# Gọi hàm taodf để lấy các DataFrame
-a = taodf(big4, file_path, pick1)
-b = taodf(NHdoanhnghiep, file_path, pick1)
-c = taodf(NHcanhan, file_path, pick1)
-d = taodf(NHnho, file_path, pick1)
-e = taodf(toannganh, file_path, pick1)
+import traceback
 
+try:
+    # Gọi hàm taodf để lấy các DataFrame
+    a = taodf(big4, file_path, pick1)
+    b = taodf(NHdoanhnghiep, file_path, pick1)
+    c = taodf(NHcanhan, file_path, pick1)
+    d = taodf(NHnho, file_path, pick1)
+    e = taodf(toannganh, file_path, pick1)
+except Exception as e:
+    st.write("Lỗi khi gọi hàm taodf:", e)
+    st.write(traceback.format_exc())
 # Chỉ lấy cột 'Average
