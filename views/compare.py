@@ -212,7 +212,7 @@ if a is not None and b is not None and c is not None and d is not None and e is 
     d = d['Average']
 
     # Gộp các DataFrame lại
-    merged_df = pd.concat([a, b, c, d, e], axis=1)
+    merged_df = pd.concat([a, b, c, d], axis=1)
 
     # Đặt tên cho các cột trong DataFrame hợp nhất
     merged_df.columns = ['Big4', 'NH Doanh Nghiệp', 'NH Cá Nhân', 'NH Nhỏ', 'Toàn Ngành']
