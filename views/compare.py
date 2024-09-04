@@ -205,7 +205,7 @@ c = taodf(NHcanhan, file_path, pick1)
 d = taodf(NHnho, file_path, pick1)
 
 # Chỉ lấy cột 'Average'
-if a is not None and b is not None and c is not None and d is not None and e is not None:
+if a is not None and b is not None and c is not None and d is not None:
     a = a['Average']
     b = b['Average']
     c = c['Average']
