@@ -166,3 +166,68 @@ if columnspick1:
     st.write(fig1)
 else:
     st.write("Hãy chọn ít nhất một Quý để hiển thị dữ liệu.")
+
+###############################
+def taodf(pick2,file_path,pick1):
+    chỉ_tiêu_data1 = {}
+
+    for mã in pick2:
+        df1= pd.read_excel(file_path,sheet_name=mã )
+        df1.columns=df1.iloc[6]
+        df1 = df1.iloc[7:].reset_index(drop=True)
+
+        
+        chỉ_tiêu_index1 = df[df.iloc[:, 0].str.strip() == pick1].index
+        if len(chỉ_tiêu_index1) > 0:
+            chỉ_tiêu_values1 = df1.iloc[chỉ_tiêu_index1[0], 1:].dropna().values
+            chỉ_tiêu_data1[mã] = chỉ_tiêu_values1
+
+    index_length1 = len(list(chỉ_tiêu_data1.values())[0])
+    # Chuyển dữ liệu thành DataFrame để tiện so sánh
+    chỉ_tiêu_df1 = pd.DataFrame(chỉ_tiêu_data1, index=df1.columns[1:index_length+1])
+    chỉ_tiêu_df1['Average'] = chỉ_tiêu_df1.mean(axis=1)
+    return chỉ_tiêu_df1
+
+
+
+
+a= taodf(big4,file_path,pick1)
+a= a['Average']
+b= taodf(NHdoanhnghiep,file_path,pick1)
+b= b['Average']
+c= taodf(NHcanhan,file_path,pick1)
+c= c['Average']
+d= taodf(NHnho,file_path,pick1)
+d= d['Average']
+e= taodf(toannganh,file_path,pick1)
+e= e['Average']
+merged_df = pd.concat([a, b, c, d, e], axis=1)
+
+# Đặt tên cho các cột trong DataFrame hợp nhất
+merged_df.columns = ['Big4', 'NH Doanh Nghiệp', 'NH Cá Nhân', 'NH Nhỏ', 'Toàn Ngành']
+
+# Hiển thị DataFrame hợp nhất
+st.write(merged_df)
+
+traces = []
+for column in merged_df.columns:
+    trace = go.Scatter(
+        x=merged_df.index,  # Trục x là index của DataFrame (thường là các chỉ số hoặc thời gian)
+        y=merged_df[column],  # Trục y là giá trị của cột tương ứng
+        mode='lines',  # Chế độ vẽ đường
+        name=column  # Tên của đường, là tên cột
+    )
+    traces.append(trace)
+
+# Tạo layout cho biểu đồ
+layout = go.Layout(
+    title='Biểu đồ {} của Các Nhóm Ngân Hàng'.format(pick1),
+    xaxis=dict(title='Thời gian'),
+    yaxis=dict(title='Giá trị'),
+)
+
+# Tạo figure với các trace
+fig = go.Figure(data=traces, layout=layout)
+
+# Hiển thị biểu đồ trong Streamlit
+st.plotly_chart(fig)
