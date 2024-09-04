@@ -111,9 +111,8 @@ excel_data = pd.ExcelFile(file_path)
 
 # Lấy tên của các sheet trong file Excel (các mã chứng khoán)
 sheet_names = excel_data.sheet_names
-selected_sheet = st.selectbox('Chọn mã chứng khoán:', sheet_names)
 # Tạo một selectbox trong Streamlit để chọn mã chứng khoán
-df = pd.read_excel(file_path,sheet_name=selected_sheet )
+df = pd.read_excel(file_path,sheet_name='ACB' )
 
 # Lấy dữ liệu từ dòng thứ 8 trở đi
 df.columns=df.iloc[6]
