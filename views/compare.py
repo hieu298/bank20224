@@ -168,6 +168,7 @@ else:
     st.write("Hãy chọn ít nhất một Quý để hiển thị dữ liệu.")
 
 ###############################
+file_path = 'asset/MergedWorkbook.xlsx'
 def taodf(pick2, file_path, pick1):
     chỉ_tiêu_data1 = {}
 
