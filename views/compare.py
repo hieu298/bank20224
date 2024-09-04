@@ -203,19 +203,21 @@ a = taodf(big4, file_path, pick1)
 b = taodf(NHdoanhnghiep, file_path, pick1)
 c = taodf(NHcanhan, file_path, pick1)
 d = taodf(NHnho, file_path, pick1)
-
+e = taodf(all_banks,file_path, pick1)
 # Chỉ lấy cột 'Average'
-if a is not None and b is not None and c is not None and d is not None:
+if a is not None and b is not None and c is not None and d is not None and e is not None:
     a = a['Average']
     b = b['Average']
     c = c['Average']
     d = d['Average']
+    e = d['Average']
+
 
     # Gộp các DataFrame lại
-    merged_df = pd.concat([a, b, c, d], axis=1)
+    merged_df = pd.concat([a, b, c, d, e], axis=1)
 
     # Đặt tên cho các cột trong DataFrame hợp nhất
-    merged_df.columns = ['Big4', 'NH Doanh Nghiệp', 'NH Cá Nhân', 'NH Nhỏ']
+    merged_df.columns = ['Big4', 'NH Doanh Nghiệp', 'NH Cá Nhân', 'NH Nhỏ','Toàn Ngành']
 
     # Hiển thị DataFrame hợp nhất
     st.write(merged_df)
