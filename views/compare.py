@@ -227,7 +227,8 @@ if a is not None and b is not None and c is not None and d is not None and e is 
     for column in merged_df.columns:
         trace = go.Scatter(
             x=merged_df.index,  # Trục x là index của DataFrame (thường là các chỉ số hoặc thời gian)
-            y=merged_df[column],  # Trục y là giá trị của cột tương ứng
+            y=merged_df[column],
+            name=column,# Trục y là giá trị của cột tương ứng
             text=merged_df[column],  # Hiển thị giá trị trên các marker
             textposition='top center',  # Vị trí hiển thị số
             marker=dict(size=8),  # Tên của đường, là tên cột
